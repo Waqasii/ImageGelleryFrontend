@@ -1,0 +1,215 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    background-color: #f8f8f8;
+    padding: 10px;
+    min-width: 400px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.thumbnailImage {
+    width: 300px;
+    height: 300px;
+    background-color: grey;
+    border-radius: 10%;
+}
+
+/* Adjust the styles for smaller screens */
+@media screen and (max-width: 800px) {
+    .column {
+        flex: 0 0 80%;
+    }
+}
+
+.profileInfo,
+.imageUpload {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profileInfo h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.container {
+    position: relative;
+}
+
+.fullImageContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.fullImage {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.deleteButton {
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.deleteButton:hover {
+    background-color: #ff4f4f;
+}
+
+.loginContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    margin-top: 10%;
+}
+
+.loginHeading {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.loginUsernameContainer,
+.loginPasswordContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.loginLabel {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.loginInput {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px #ccc;
+    font-size: 16px;
+    width: 90%;
+}
+
+.loginButton {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.loginButton:hover {
+    background-color: #0069d9;
+}
+
+.loginMsgs {
+    color: red;
+    margin-top: 10px;
+}
+
+.imageUpload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0;
+
+}
+
+.fileInputContainer {
+    position: relative;
+}
+
+.fileInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.chooseFileButton {
+    display: inline-block;
+    background-color: #ddd;
+    background-color: rgb(95, 215, 95);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 50px;
+    cursor: pointer;
+    margin-right: 10px;
+    /* Add a right margin of 10px */
+}
+
+.fileName {
+    margin: 0.5rem 0;
+    margin-right: 10px;
+}
+
+.uploadButton {
+    display: inline-block;
+    background-color: #008CBA;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    margin-top: 0.5rem;
+
+}
+
+.uploadButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

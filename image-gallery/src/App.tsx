@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './components/Login';
-import { Profile } from './components/Profile';
+import Profile from './components/Profile';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import PrivateRoute from './utils/PrivateRoute';
 

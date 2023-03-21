@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_MUTATION } from '../graphql/mutation';
 import { useNavigate } from 'react-router-dom';
+import styles from './GridView.module.css'
 
 
 const Login = () => {
@@ -24,12 +25,13 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="">Username</label>
+        <div className={styles.loginContainer}>
+            <h2 className={styles.loginHeading}>Login</h2>
+            <form className={styles.loginForm} onSubmit={handleSubmit}>
+                <div className={styles.loginUsernameContainer}>
+                    <label htmlFor="" className={styles.loginLabel}>Username</label>
                     <input
+                        className={styles.loginInput}
                         type="text"
                         id="username"
                         value={username}
@@ -37,19 +39,20 @@ const Login = () => {
                     />
 
                 </div>
-                <div>
-                    <label htmlFor="password">Password</label>
+                <div className={styles.loginpasswordContainer}>
+                    <label htmlFor="password" className={styles.loginLabel}>Password</label>
                     <input
+                        className={styles.loginInput}
                         type="password"
                         id="password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
                 </div>
-                <button type="submit" disabled={loading}>
+                <button className={styles.loginButton} type="submit" disabled={loading}>
                     {loading ? 'Loading...' : 'Login'}
                 </button>
-                {error && <div>{error.message}</div>}
+                {error && <div className={styles.loginMsgs}>{error.message}</div>}
             </form>
         </div>
     );
