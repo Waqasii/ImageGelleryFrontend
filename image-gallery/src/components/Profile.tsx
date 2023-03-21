@@ -63,7 +63,7 @@ const Profile = () => {
 
 const handleImageUpload = (file: File) => {
     // Handle the file upload here
-    console.log("Uploading file:", file);
+    console.log("Uploading file:", file.name);
 };
 
 

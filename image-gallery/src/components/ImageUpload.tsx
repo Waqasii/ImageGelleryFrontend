@@ -12,15 +12,19 @@ class ImageUpload extends Component<{ onUpload: (file: File) => void }, { file: 
     handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files && event.target.files[0];
         this.setState({ file: selectedFile });
+        console.log('FileChange')
     };
 
     handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const { file } = this.state;
+
         if (file) {
             this.props.onUpload(file);
             this.setState({ file: null });
         }
+
+
     };
 
     render() {
@@ -39,7 +43,7 @@ class ImageUpload extends Component<{ onUpload: (file: File) => void }, { file: 
                         />
                         <label htmlFor="fileInput" className={styles.chooseFileButton}>+</label>
                         {file && <span className={styles.fileName}>{file.name}</span>}
-                        <button className={styles.uploadButton} type="submit" disabled={!file}>Upload</button>
+                        {file && <button className={styles.uploadButton} type="submit" disabled={!file}>Upload</button>}
 
                     </div>
 
