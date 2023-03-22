@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import verifyToken from './helpers'
+import { verifyToken } from './helpers'
 
 
 const PrivateRoute = () => {
