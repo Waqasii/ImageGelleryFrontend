@@ -22,21 +22,6 @@ const ImageUpload = ({ onUpload }: { onUpload: (file: File) => S3_RESPONSE }) =>
             const res = await onUpload(file);
             console.log(res);
 
-            // inputs of mutation
-            const inputs = {
-                input_data: {
-                    imageUrl: res?.image_url ?? '',
-                    imageFilename: res?.image_filename ?? '',
-                },
-            };
-
-            try {
-                const { data } = await uploadImage({ variables: inputs });
-                console.log('After Mutation', data);
-            } catch (e) {
-                console.log(e);
-            }
-
             setFile(null);
         }
     };

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './GridView.module.css';
 import { handleImageDelete } from '../utils/helpers'
+import { useMutation } from '@apollo/client';
+import { DELETE_IMAGE } from '../graphql/mutation';
 interface Props {
     imageUrl: string;
     thumbnailUrl: string;
@@ -10,6 +12,7 @@ interface Props {
 
 const ImagePreview: React.FC<Props> = ({ imageUrl, imageFilename, thumbnailUrl, thumbnailFilename }) => {
     const [showFullImage, setShowFullImage] = useState(false);
+    const [deleteImage] = useMutation(DELETE_IMAGE);
 
     const handlePreviewClick = () => {
         setShowFullImage(true);
@@ -19,11 +22,27 @@ const ImagePreview: React.FC<Props> = ({ imageUrl, imageFilename, thumbnailUrl, 
         setShowFullImage(false);
     };
 
-    const handleDeleteClick = async (imageURL: string, thumbnailUrl: string) => {
+    const handleDeleteClick = async (imageFilename: string, thumbnailFilename: string) => {
 
         // Handle delete logic here
         console.log('Delete:', thumbnailUrl)
-        await handleImageDelete(imageURL, thumbnailUrl)
+        await handleImageDelete(imageFilename, thumbnailFilename)
+
+        // delete from database
+        // inputs of mutation
+        const inputs = {
+            input_data: {
+                imageFilename: imageFilename,
+            },
+        };
+
+        try {
+            const { data } = await deleteImage({ variables: inputs });
+            console.log('After deletion', data);
+        } catch (e) {
+            console.log(e);
+        }
+
     };
 
     return (
@@ -35,7 +54,7 @@ const ImagePreview: React.FC<Props> = ({ imageUrl, imageFilename, thumbnailUrl, 
             ) : (
                 <div className={styles.fullImageContainer} onClick={handleFullImageClick}>
                     <img className={styles.FullImage} src={imageUrl} alt="full-size image" />
-                    <button className={styles.deleteButton} onClick={() => handleDeleteClick(imageUrl, thumbnailUrl)}>
+                    <button className={styles.deleteButton} onClick={() => handleDeleteClick(imageFilename, thumbnailFilename)}>
                         Delete
                     </button>
                 </div>
