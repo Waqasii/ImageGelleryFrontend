@@ -17,8 +17,9 @@ const ImagePreview: React.FC<Props> = ({ imageUrl, thumbnailUrl }) => {
         setShowFullImage(false);
     };
 
-    const handleDeleteClick = () => {
+    const handleDeleteClick = (imageURL: string, thumbnailUrl: string) => {
         // Handle delete logic here
+        console.log('Delete:', thumbnailUrl)
     };
 
     return (
@@ -30,11 +31,12 @@ const ImagePreview: React.FC<Props> = ({ imageUrl, thumbnailUrl }) => {
             ) : (
                 <div className={styles.fullImageContainer} onClick={handleFullImageClick}>
                     <img className={styles.FullImage} src={imageUrl} alt="full-size image" />
-                    <button className={styles.deleteButton} onClick={handleDeleteClick}>
+                    <button className={styles.deleteButton} onClick={() => handleDeleteClick(imageUrl, thumbnailUrl)}>
                         Delete
                     </button>
                 </div>
-            )}
+            )
+            }
         </>
     );
 };
