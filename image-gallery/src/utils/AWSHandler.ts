@@ -15,7 +15,6 @@ interface DeleteResponse { msg: string | null, success: true | false | null }
 
 
 
-
 export const s3ImageUpload = async (file: File) => {
     // Handle the file upload into S3
     console.log("Uploading file:", file.name);
@@ -24,7 +23,7 @@ export const s3ImageUpload = async (file: File) => {
 
     }
     const s3 = new ReactS3Client(s3Config);
-    const filename = 'waqasii';
+    const filename = file.name;
 
     try {
         const res = await s3.uploadFile(file, filename);

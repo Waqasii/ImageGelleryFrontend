@@ -20,3 +20,27 @@ export const Verify_Token = gql`
   }
 }
 `;
+
+
+export const ADD_IMAGE = gql`
+mutation createImage($input_data: CreateImageArguments!) {
+  addUpdateImage(inputData: $input_data) {
+    image {
+      id
+      imageUrl
+      imageFilename
+      thumbnailUrl
+      thumbnailFilename
+    }
+  }
+}
+`
+
+export const DELETE_IMAGE = gql`
+mutation DeleteImage($input_data: DeleteImageArguments!) {
+  deleteImage(inputData: $input_data) {
+    message 
+    success
+  }
+}
+`
