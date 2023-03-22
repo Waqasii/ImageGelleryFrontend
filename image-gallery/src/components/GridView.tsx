@@ -14,6 +14,7 @@ type Props = {
 };
 
 const GridView = ({ images }: Props) => {
+
     return (
         <div className={styles.grid}>
             {images.map(({ id, imageUrl, imageFilename, thumbnailUrl, thumbnailFilename }, index) => (

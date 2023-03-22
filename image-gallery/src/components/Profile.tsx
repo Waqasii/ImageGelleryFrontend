@@ -2,7 +2,8 @@ import ProfileHeader from "./ProfileHeader";
 import ImageUpload from "./ImageUpload";
 import GridView from "./GridView";
 import { handleImageUpload } from "../utils/helpers";
-
+import { useQuery } from '@apollo/client';
+import { ALL_IMGAES_QUERY } from '../graphql/query'
 
 
 const images = [
@@ -38,11 +39,21 @@ const images = [
 ];
 
 const Profile = () => {
+    const { data, loading, error } = useQuery(ALL_IMGAES_QUERY)!;
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+    console.log(images)
     return (
         <div className="profile">
             <ProfileHeader username="Waqasii" totalPictures={13} />
             <ImageUpload onUpload={handleImageUpload} />
-            <GridView images={images} />
+            <GridView images={data.imagesByUser} />
         </div>
     );
 };
