@@ -1,15 +1,15 @@
 import ProfileHeader from "./ProfileHeader";
 import ImageUpload from "./ImageUpload";
 import GridView from "./GridView";
-
+import { handleImageUpload } from "../utils/helpers";
 
 
 
 const images = [
     {
         id: 1,
-        imageUrl: 'https://picsum.photos/500/300/?random',
-        thumbnailUrl: 'https://picsum.photos/300/300/?random',
+        imageUrl: 'https://resizeimgbuck.s3.eu-north-1.amazonaws.com/waqasii.png',
+        thumbnailUrl: 'https://resizeimgbuck.s3.eu-north-1.amazonaws.com/waqasii-resized.png',
         caption: 'Caption 1',
     },
     {
@@ -60,11 +60,6 @@ const Profile = () => {
     );
 };
 
-
-const handleImageUpload = (file: File) => {
-    // Handle the file upload here
-    console.log("Uploading file:", file.name);
-};
 
 
 export default Profile;
