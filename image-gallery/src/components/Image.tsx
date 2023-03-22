@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import styles from './GridView.module.css';
-
+import { handleImageDelete } from '../utils/helpers'
 interface Props {
     imageUrl: string;
     thumbnailUrl: string;
+    imageFilename: string;
+    thumbnailFilename: string;
 }
 
-const ImagePreview: React.FC<Props> = ({ imageUrl, thumbnailUrl }) => {
+const ImagePreview: React.FC<Props> = ({ imageUrl, imageFilename, thumbnailUrl, thumbnailFilename }) => {
     const [showFullImage, setShowFullImage] = useState(false);
 
     const handlePreviewClick = () => {
@@ -17,9 +19,11 @@ const ImagePreview: React.FC<Props> = ({ imageUrl, thumbnailUrl }) => {
         setShowFullImage(false);
     };
 
-    const handleDeleteClick = (imageURL: string, thumbnailUrl: string) => {
+    const handleDeleteClick = async (imageURL: string, thumbnailUrl: string) => {
+
         // Handle delete logic here
         console.log('Delete:', thumbnailUrl)
+        await handleImageDelete(imageURL, thumbnailUrl)
     };
 
     return (

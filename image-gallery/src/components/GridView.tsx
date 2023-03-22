@@ -8,16 +8,18 @@ type Props = {
         id: number;
         imageUrl: string;
         thumbnailUrl: string;
-        caption: string;
+        imageFilename: string;
+        thumbnailFilename: string;
     }[];
 };
 
 const GridView = ({ images }: Props) => {
     return (
         <div className={styles.grid}>
-            {images.map(({ id, imageUrl, thumbnailUrl }, index) => (
+            {images.map(({ id, imageUrl, imageFilename, thumbnailUrl, thumbnailFilename }, index) => (
                 <div key={id} className={styles.column} >
-                    <Image imageUrl={imageUrl} thumbnailUrl={thumbnailUrl} />
+                    <Image imageUrl={imageUrl} thumbnailUrl={thumbnailUrl}
+                        imageFilename={imageFilename} thumbnailFilename={thumbnailFilename} />
                 </div>
             ))}
         </div>
