@@ -11,15 +11,16 @@ type Props = {
         imageFilename: string;
         thumbnailFilename: string;
     }[];
+    toggleProfileUpdate: () => void;
 };
 
-const GridView = ({ images }: Props) => {
+const GridView = ({ images, toggleProfileUpdate }: Props) => {
 
     return (
         <div className={styles.grid}>
             {images.map(({ id, imageUrl, imageFilename, thumbnailUrl, thumbnailFilename }, index) => (
                 <div key={id} className={styles.column} >
-                    <Image imageUrl={imageUrl} thumbnailUrl={thumbnailUrl}
+                    <Image imageUrl={imageUrl} thumbnailUrl={thumbnailUrl} toggleProfileUpdate={toggleProfileUpdate}
                         imageFilename={imageFilename} thumbnailFilename={thumbnailFilename} />
                 </div>
             ))}

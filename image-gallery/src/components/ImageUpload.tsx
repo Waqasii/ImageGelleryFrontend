@@ -5,7 +5,7 @@ import { ADD_IMAGE } from '../graphql/mutation';
 
 type S3_RESPONSE = Promise<{ image_url: string | null; image_filename: string | null; } | null>;
 
-const ImageUpload = ({ onUpload }: { onUpload: (file: File) => S3_RESPONSE }) => {
+const ImageUpload = ({ onUpload, toggleProfileUpdate }: { onUpload: (file: File) => S3_RESPONSE, toggleProfileUpdate: () => void }) => {
     const [file, setFile] = useState<File | null>(null);
     const [uploadImage] = useMutation(ADD_IMAGE);
 
@@ -32,6 +32,7 @@ const ImageUpload = ({ onUpload }: { onUpload: (file: File) => S3_RESPONSE }) =>
             try {
                 const { data } = await uploadImage({ variables: inputs });
                 console.log('After Uploading in DB', data);
+                toggleProfileUpdate(); // update the state
             } catch (e) {
                 console.log('ERROR in uploading in local db ', e);
             }

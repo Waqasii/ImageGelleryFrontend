@@ -8,9 +8,10 @@ interface Props {
     thumbnailUrl: string;
     imageFilename: string;
     thumbnailFilename: string;
+    toggleProfileUpdate: () => void;
 }
 
-const ImagePreview: React.FC<Props> = ({ imageUrl, imageFilename, thumbnailUrl, thumbnailFilename }) => {
+const ImagePreview: React.FC<Props> = ({ imageUrl, imageFilename, thumbnailUrl, thumbnailFilename, toggleProfileUpdate }) => {
     const [showFullImage, setShowFullImage] = useState(false);
     const [deleteImage] = useMutation(DELETE_IMAGE);
 
@@ -39,6 +40,7 @@ const ImagePreview: React.FC<Props> = ({ imageUrl, imageFilename, thumbnailUrl, 
         try {
             const { data } = await deleteImage({ variables: inputs });
             console.log('After deletion', data);
+            toggleProfileUpdate(); // update the state
         } catch (e) {
             console.log(e);
         }
