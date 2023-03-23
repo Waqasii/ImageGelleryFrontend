@@ -20,7 +20,21 @@ const ImageUpload = ({ onUpload }: { onUpload: (file: File) => S3_RESPONSE }) =>
 
         if (file) {
             const res = await onUpload(file);
-            console.log(res);
+            console.log('After Uploading on AWS: ', res);
+            const inputs = {
+                input_data: {
+                    imageFilename: res?.image_filename,
+                    imageUrl: res?.image_url
+
+                },
+            };
+
+            try {
+                const { data } = await uploadImage({ variables: inputs });
+                console.log('After Uploading in DB', data);
+            } catch (e) {
+                console.log('ERROR in uploading in local db ', e);
+            }
 
             setFile(null);
         }

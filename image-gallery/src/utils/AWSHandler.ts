@@ -24,9 +24,10 @@ export const s3ImageUpload = async (file: File) => {
     }
     const s3 = new ReactS3Client(s3Config);
     const filename = file.name;
+    const nameWithoutExtension = filename.substring(0, filename.lastIndexOf('.')).replaceAll(' ', '');
 
     try {
-        const res = await s3.uploadFile(file, filename);
+        const res = await s3.uploadFile(file, nameWithoutExtension);
         response.msg = "Image Uploaded Successfully";
         response.success = true;
         response.image_url = res.location

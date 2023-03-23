@@ -15,7 +15,7 @@ export const handleImageUpload = async (file: File) => {
     const response = await s3ImageUpload(file);
 
     if (response.success) {
-
+        console.log('Image Uploaded on S3 succcessfully!')
         return { image_url: response.image_url, image_filename: response.img_key }
 
     } else {
@@ -27,7 +27,7 @@ export const handleImageUpload = async (file: File) => {
 export const handleImageDelete = async (imageFilename: string, thumbnailFilename: string) => {
     const response = await S3ImageDelete(imageFilename, thumbnailFilename);
     if (response.success) {
-        console.log(response.msg);
+        console.log('Image DELETED successfully on S3:', response.msg);
         // Delete it from database using GRAPHQL API
         // TODO:
 
